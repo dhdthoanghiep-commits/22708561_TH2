@@ -1,5 +1,5 @@
 // src/constants/theme.ts — Bảng màu KTXGo theo đề TH2 (Chương 3: theme.ts là tầng thấp nhất,
-// chỉ chứa hằng số thuần). KHÔNG dùng #FF4D4F (ShopAI) và KHÔNG dùng teal #0F766E (CampusMart TH1).
+// chỉ chứa hằng số thuần). Bộ màu xanh dương riêng của KTXGo, không dùng lại màu ShopAI / CampusMart TH1.
 export const COLORS = {
   primary: '#1D4ED8', // nút, tab chọn, giá
   secondary: '#F97316', // badge giỏ, phí ship
