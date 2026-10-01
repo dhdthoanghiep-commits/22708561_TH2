@@ -54,7 +54,7 @@ npx react-native run-android      # Android Emulator (đã test: AVD Pixel_6)
 adb emu geo fix 106.6800 10.8310
 ```
 
-Kiểm tra: `npx tsc --noEmit` (0 lỗi) · `npx eslint App.tsx src`.
+Kiểm tra: `npx tsc --noEmit` → 0 lỗi · `npx eslint App.tsx src` → 0 lỗi (1 cảnh báo `no-bitwise` nằm trong `examStamp()` của mẫu đề, giữ nguyên).
 
 ## Cây thư mục
 
@@ -87,8 +87,14 @@ KTXGo_22708561/
 | 3a | cartStore `add / remove / changeQty / totalQuantity / totalAmount`, persist AsyncStorage key có MSSV; + (Home) và Thêm giỏ (Detail) cùng store + Haptic theo VARIANT; Giỏ đủ SL/xoá/tổng/ROOM_LABEL | `cartStore.ts`, `haptics.ts`, `CartScreen.tsx` |
 | 3b | `useCampusLocation`: granted / denied / blocked, blocked → `Linking.openSettings()`; Haversine + phí B + `BASE_SHIP_FEE`; phí ở Tôi và phản ánh Giỏ; Đăng xuất về Login | `useCampusLocation.ts`, `MeScreen.tsx`, `CartScreen.tsx` |
 
-## Ảnh máy ảo
+## Ảnh máy ảo (Android Emulator Pixel_6 – Android 14)
 
-| Home | Giỏ |
+| Home (`docs/screenshot-th2-home.png`) | Giỏ (`docs/screenshot-th2-cart.png`) |
 |---|---|
 | ![home](docs/screenshot-th2-home.png) | ![cart](docs/screenshot-th2-cart.png) |
+
+Minh chứng thêm trong `docs/extra/`: Login ô SĐT · Detail nhận `route.params.id` · Alert có MSSV khi Thêm vào giỏ · Pull-to-refresh · Lỗi mạng có MSSV + Thử lại · Debounce đang chờ 400 ms · Tôi: quyền granted + phí ship công thức B · Tôi: quyền blocked · `Linking.openSettings()` mở trang App info.
+
+| Lỗi mạng (tắt Wi-Fi/Data) | Debounce | Quyền granted | Quyền blocked |
+|---|---|---|---|
+| ![err](docs/extra/5-loi-mang-thu-lai.png) | ![deb](docs/extra/6-debounce-dang-go.png) | ![granted](docs/extra/7-me-granted-phi-ship-B.png) | ![blocked](docs/extra/8-me-blocked.png) |
