@@ -8,7 +8,7 @@ App React Native CLI + TypeScript **KTXGo** — giao đồ tận phòng ký túc
 |---|---|
 | Họ tên (IN HOA) | LE NGUYEN HOANG HIEP |
 | MSSV | 22708561 |
-| Lớp | DHIOT19B |
+| Lớp / Lớp học phần | DHIOT19B - 420300351702 |
 | Repo | https://github.com/dhdthoanghiep-commits/22708561_TH2.git |
 | `examStamp()` | 392230 |
 | Dòng tên trên mọi màn | `TH2 · 22708561 · LE NGUYEN HOANG HIEP · #392230` |
