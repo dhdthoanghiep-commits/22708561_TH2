@@ -1,45 +1,33 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+// TH2 | 22708561 | LE NGUYEN HOANG HIEP | #392230
+import React from 'react';
+import { StatusBar } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { NavigationContainer } from '@react-navigation/native';
+import RootNavigator from '@navigation/RootNavigator';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
+// Server State (Chương 6 – Phần 6.5). staleTime đặt ở từng useQuery = STALE_TIME_MS (student.ts)
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 2, // mất mạng: thử lại 2 lần rồi mới rơi vào nhánh error (nút Thử lại)
+    },
+  },
+});
 
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
+// Thứ tự bọc theo đề: SafeAreaProvider → QueryClientProvider → NavigationContainer → RootNavigator
+function App(): React.JSX.Element {
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+      <QueryClientProvider client={queryClient}>
+        <NavigationContainer>
+          {/* RN 0.87 bật edge-to-edge: thanh trạng thái trong suốt, nền lấy từ SafeAreaView của từng màn */}
+          <StatusBar barStyle="dark-content" />
+          <RootNavigator />
+        </NavigationContainer>
+      </QueryClientProvider>
     </SafeAreaProvider>
   );
 }
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
